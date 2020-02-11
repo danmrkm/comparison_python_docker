@@ -5,8 +5,38 @@ services:
     build:
       dockerfile: "Dockerfile"
       context: "./alpine_linux"
-    container_name: python_alpine
-    command: python3 /var/python_scripts/calc_pi.py alpine
+    container_name: alpine_python
+    # command: python3 /var/python_scripts/calc_pi.py alpine
+    volumes:
+      - ./results:/var/work
+      - ./python_scripts:/var/python_scripts
+
+  slim_python:
+    build:
+      dockerfile: "Dockerfile"
+      context: "./slim"
+    container_name: slim_python
+    # command: python3 /var/python_scripts/calc_pi.py slim
+    volumes:
+      - ./results:/var/work
+      - ./python_scripts:/var/python_scripts
+
+  centos_python:
+    build:
+      dockerfile: "Dockerfile"
+      context: "./centos7"
+    container_name: centos_python
+    # command: python3 /var/python_scripts/calc_pi.py centos
+    volumes:
+      - ./results:/var/work
+      - ./python_scripts:/var/python_scripts
+
+  ubuntu_python:
+    build:
+      dockerfile: "Dockerfile"
+      context: "./ubuntu18.04"
+    container_name: ubuntu_python
+    command: python3 /var/python_scripts/calc_pi.py ubuntu
     volumes:
       - ./results:/var/work
       - ./python_scripts:/var/python_scripts
