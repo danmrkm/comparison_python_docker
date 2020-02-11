@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  alpine_python:
+    build:
+      dockerfile: "Dockerfile"
+      context: "./alpine_linux"
+    container_name: python_alpine
+    command: python3 /var/python_scripts/calc_pi.py alpine
+    volumes:
+      - ./results:/var/work
+      - ./python_scripts:/var/python_scripts
